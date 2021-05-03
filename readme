@@ -1,0 +1,13 @@
+Questo progetto ha come obiettivi quello di produrre una segmentazione delle lesioni del polmone e una predizione dell'infiltrazione dei linfonodi e della probabilità di sopravvivenza
+
+
+
+Possibili problemi: non tutti i casi hanno lo stesso numero di slices
+
+[] Usare modelli  2D Fully Convolutional per la segmentazione
+[] Usare u-net/v net per la segmentazione
+[] Provare modelli 3D per la segmentazione
+
+[] Usare modelli 2D per la classificazione
+[] Usare modelli 3D per la classificazione
+[] ACS 2D->3D
