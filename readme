@@ -4,10 +4,31 @@ Questo progetto ha come obiettivi quello di produrre una segmentazione delle les
 
 Possibili problemi: non tutti i casi hanno lo stesso numero di slices
 
-[] Usare modelli  2D Fully Convolutional per la segmentazione
+
+### FASE 1: SEGMENTAZIONE ####
+
+[x] Usare modelli  2D Fully Convolutional per la segmentazione:
+    [x] tentativo_fc_vanilla_1.py : OOM problemi di memoria, potrebbe girare bene su un pc con tanta memoria o cluster
+    [x] tentativo_fc_vanilla_2.py : OK ma non eccezionale
+
 [] Usare u-net/v net per la segmentazione
+    [x] Allenata con 4 epoche con immagini 2D e dataset hdf5 (tutte slice indipendenti)
+        [!] Problemi nella valutazione con i dicom (forse qualche rescaling?)
+        [x] Ho usato gli nrrd e copiato gli header (altrimenti origine dello spazio diversa)
+        [RISULTATO] nome file: unet_predict_3d_NRRD.py ->  Non male, ma trova delle roi sui vasi, a volte nel cuore, negli organi -> le ultime penso si possano rimuovere
+
+    []  Valutare stima 3d
+        [] da fare pulizia roi in 3d -> elimino quelle in fette con segnale troppo grande? learning più lungo? diversi parametri?
+        [] da fare mean dice e valutare su dataset esterno
+
 [] Provare modelli 3D per la segmentazione
 
+--> CLUSTER
+
+### FASE 2: CLASSIFICAZIONE ####
+
 [] Usare modelli 2D per la classificazione
+    [] approccio 1: seleziono le fette di interesse usando gli nrrd e faccio il training di una rete così per predire la coppia (N,overallsurvival) o uno solo di essi
+
 [] Usare modelli 3D per la classificazione
 [] ACS 2D->3D

@@ -12,7 +12,7 @@ from keras.models import Model
 from keras.layers import concatenate
 
 
-def conv_module(x, n_filter, kX, kY, dr, chanDim=-1, padding="same", do=DO):
+def conv_module(x, n_filter, kX, kY, dr, chanDim=-1, padding="same", do=0.3):
     # define a (CONV => BN => RELU pattern => DROPOUT)*2
     x = Conv2D(n_filter, (kX, kY), dilation_rate=dr, padding=padding)(x)
     x = BatchNormalization(axis=chanDim)(x)
@@ -64,11 +64,11 @@ class FullyConvNet:
         conc = concatenate([c3_o, c4_o, c5_o, c6_o, c7_o])
 
         c8 = conv_module(conc, 64, 1, 1, (1, 1))
-        pred = Conv2D(2, (1, 1), padding="same")(c8)
 
-        ##mia modifica alla rete
-        #    pred=Cropping2D(3)(pred)
-        #    pred=ZeroPadding2D(3)(pred)
+
+        #pred = Conv2D(2, (1, 1), padding="same")(c8)
+        ##modifica
+        pred = Conv2D(1, (1, 1), padding="same")(c8)  #modello binario
 
         model = Model(i, pred, name=name)
 
