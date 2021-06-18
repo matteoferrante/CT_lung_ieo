@@ -17,12 +17,24 @@ Possibili problemi: non tutti i casi hanno lo stesso numero di slices
         [x] Ho usato gli nrrd e copiato gli header (altrimenti origine dello spazio diversa)
         [RISULTATO] nome file: unet_predict_3d_NRRD.py ->  Non male, ma trova delle roi sui vasi, a volte nel cuore, negli organi -> le ultime penso si possano rimuovere
 
+
+
     []  Valutare stima 3d
         [] da fare pulizia roi in 3d -> elimino quelle in fette con segnale troppo grande? learning più lungo? diversi parametri?
         [] da fare mean dice e valutare su dataset esterno
 
 [] Provare modelli 3D per la segmentazione
 
+    [] Provare ACS  -> molto interessante ma comunque i modelli diventano troppo grandi per la mia scheda video
+    [] Provare fullyconv3d -> stesso problema
+    [] Provare VNET -> ancora problema
+
+
+[] Approccio triplo Axial Sagittal Coronal manuale
+
+    per il training ho usato i primi 220 del primo dataset e i primi 110 del secondo dataset
+    [] tentativo_unet_3.py : ACS manuale unet -> credo sia la strada giusta. tengo per training 220-270 del primo dataset, IEO other e quello esterno.
+       (serve aver creato il dataset hdf5)
 --> CLUSTER
 
 ### FASE 2: CLASSIFICAZIONE ####
